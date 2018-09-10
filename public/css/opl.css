@@ -32,7 +32,7 @@ body  { background-color: #eedccf; }
 }
 .featured .thumb:hover { opacity: 1;}
 
-.content { font-family: "Lato", sans-serif; }
+.content { font-family: "Lato", sans-serif; text-align: justify;}
 .content h1 { font-family: "Open Sans Condensed"; font-weight: 700; }
 .content h2 { font-family: "Open Sans Condensed"; font-weight: 300; }
 .content h3 { font-family: "Open Sans Condensed"; font-weight: 300; }
@@ -95,6 +95,14 @@ body  { background-color: #eedccf; }
 
 .content h4.important { border-left: 25px solid rgb(23, 162, 184); }
 
+.content a.taxonomy { color: #f2822e }
+.content .author { color: #f2822e; }
+
+.comment { padding: 25px 0; }
+.comment .author { color: #f2822e; }
+
+.comment:hover { background-color: #efeeed;  }
+
 
 @media (min-width: 576px) {
   .card-columns {
@@ -113,3 +121,5 @@ body  { background-color: #eedccf; }
 /* FOOTER */
 
 .site-footer { margin-bottom: 20px; padding: 15px 0; }
+
+.cookie-consent { width: 50%; margin: 15px auto; }

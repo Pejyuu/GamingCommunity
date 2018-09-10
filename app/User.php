@@ -35,4 +35,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('Modules\Posts\Entities\Post', 'id');
     }
+
+    public function events()
+    {
+      return $this->belongsToMany('Modules\Events\Entities\Event', 'event_user');
+    }
+
+
 }

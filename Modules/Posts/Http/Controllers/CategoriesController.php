@@ -16,7 +16,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('posts::index');
+      $categories = Category::simplePaginate(10);
+      return view('posts::admin.cat.index')->with('categories', $categories);
     }
 
     /**
@@ -25,7 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('posts::create');
+        return view('posts::admin.cat.create');
     }
 
     /**
@@ -35,24 +36,30 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-    }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('posts::show');
+
+      $cat = new Category();
+      $cat->name = $request['name'];
+      $cat->description = $request['desc'];
+
+
+      $cat->save();
+
+      return redirect()->route('category.index')
+          ->with('flash_message',
+           'Category "'. $cat->name.'" added!');
+
+
     }
 
     /**
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('posts::edit');
+      $category = Category::findOrFail($id);
+      return view('posts::admin.cat.edit', compact('category'));
     }
 
     /**
@@ -60,15 +67,32 @@ class CategoriesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+      $category = Category::findOrFail($id);
+
+      // VALIDATE!
+
+      $input = $request->all();
+      $category->fill($input)->save();
+
+      return redirect()->route('category.index')
+          ->with('flash_message',
+           'Category "'. $category->name.'" updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+      $category = Category::findOrFail($id);
+
+      $category->delete();
+
+      return redirect()->route('category.index')
+          ->with('flash_message',
+           'Category deleted!');
     }
 }

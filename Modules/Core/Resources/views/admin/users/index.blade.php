@@ -9,8 +9,9 @@
     <h1><i class="fa fa-users"></i> User Administration <a href="{{ route('role.index') }}" class="btn btn-default pull-right">Roles</a>
     <a href="{{ route('permission.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
     <hr>
-    <div class="table-responsive">
-        <table class="table table-sm table-bordered table-striped">
+    <div class="table-responsive userlist">
+    <span class="float-left">{!! $users->links() !!}</span>  <span class="float-right"><h5><span class="text-info">{{ count( App\User::all() )  }} </span> Total Members</h5></span>
+        <table class="table table-sm table-bordered table-striped table-hover">
 
             <thead class="thead-dark">
                 <tr>
@@ -45,8 +46,8 @@
                 </tr>
                 @endforeach
             </tbody>
-
         </table>
+        {!! $users->links() !!}
     </div>
 
 </div>

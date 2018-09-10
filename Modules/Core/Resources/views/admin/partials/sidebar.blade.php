@@ -26,14 +26,25 @@
 
       <h6>Redaksjonen</h6>
         <a href="{{ route('page.index')}}" ><i class="far fa-file-alt"></i> Pages</a>
+        <br>
         <a href="{{ route('post.index')}}" ><i class="far fa-newspaper"></i> Poster</a>
 
+        <button class="dropdown-btn"><i class="fas fa-tags"></i> Categories / Tags <i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-container">
+          <a href="{{ route('category.index') }}">Categories</a>
+          <a href="#" class="disabled">Tags</a>
+        </div>
+
+        <a href="{{ route('event.index')}}"><i class="far fa-times-circle"></i> Events</a>
+
+      <h6>Merchandise</h6>
+      <a href="{{ route('shop.index') }}"><i class="far fa-times-circle"></i> Butikk</a>
 
       <h6>Kommende features</h6>
 
 
-        <a href="#" class="disabled"><i class="far fa-times-circle"></i> Butikk</a>
-        <a href="#" class="disabled"><i class="far fa-times-circle"></i> Events</a>
+        <a href="#" class="disabled"><i class="far fa-times-circle"></i> Oppslagstavle</a>
+        <a href="#" class="disabled"><i class="far fa-times-circle"></i> Magasin</a>
 
     </ul>
 </div>

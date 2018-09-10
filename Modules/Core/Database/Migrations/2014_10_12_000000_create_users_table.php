@@ -17,8 +17,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('discord_id');
             $table->string('name');
+            $table->string('realname');
             $table->string('email')->nullable();
             $table->string('avatar');
+            $table->string('phone');
+            $table->integer('verified');
             $table->rememberToken();
             $table->timestamps();
         });

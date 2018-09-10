@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+use Modules\Posts\Entities\Comment as Comment;
+
 class CommentsController extends Controller
 {
     /**
@@ -31,9 +33,24 @@ class CommentsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
-    {
-    }
+     public function store(Request $request)
+     {
+       //Validate name and permissions field
+
+           // VALIDATE
+
+
+           $comment = new Comment();
+           $comment->post_id = $request['post_id'];
+           $comment->user_id = $request['user_id'];
+           $comment->comment = $request['comment'];
+           $comment->moderation = 0;
+
+
+           $comment->save();
+
+           return redirect()->back()->with('success', ['your message,here']);
+     }
 
     /**
      * Show the specified resource.
@@ -66,7 +83,14 @@ class CommentsController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
-    {
+
+      public function destroy($id) {
+          $posts = Comment::findOrFail($id);
+
+          $posts->delete();
+
+          return redirect()->back()->with('success', ['Comment was deleted']);
+
+
     }
 }

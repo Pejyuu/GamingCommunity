@@ -11,7 +11,7 @@
     <a href="{{ route('permission.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
     <hr>
     <div class="table-responsive table-sm">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th>Role</th>

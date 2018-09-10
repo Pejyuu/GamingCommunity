@@ -20,15 +20,36 @@ class PostsController extends Controller
      */
     public function index()
     {
-      $posts = Post::orderBy('created_at', 'desc')->get();
+      $posts = Post::orderBy('created_at', 'desc')->with('author')->get();
       return view('posts::admin.index')->with('posts', $posts);
     }
 
     public function frontend()
     {
-      $posts = Post::orderBy('created_at', 'desc')->get();
-      return view('posts::index')->with('posts', $posts);
+      $posts = Post::orderBy('created_at', 'desc')->with('author')->take(9)->get();
+      return view('posts::index')->with('posts', $posts)->with('author')->with('comments');
     }
+    public function archive()
+    {
+      {
+        $posts = Post::orderBy('created_at', 'desc')->with('author')->paginate(10);
+        return view('posts::archive')->with('posts', $posts)->with('author')->with('comments');
+      }
+    }
+
+    /**
+     * Show the specified resource.
+     * @return Response
+     */
+     public function display($slug)
+     {
+
+         $post = Post::where('slug', $slug)->with('author')->first();
+         if(!$post){ abort(404); }
+
+
+         return view('posts::display')->with( 'post', $post);
+     }
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +58,7 @@ class PostsController extends Controller
     public function create()
     {
       $categories = Category::pluck('name', 'id');
-        return view('posts::admin.create')->with('categories', $categories->toArray());
+      return view('posts::admin.create')->with('categories', $categories->toArray());
     }
 
     /**
@@ -55,6 +76,7 @@ class PostsController extends Controller
            $title = $request['title'];
            $content = $request['content'];
            $category_id = $request['category_id'];
+           $lead = $request['lead'];
            $tags = $request['tags'];
            $img = $request['filepath'];
            $slug = str_slug($title, '-');
@@ -73,20 +95,6 @@ class PostsController extends Controller
            return redirect()->route('post.index')
                ->with('flash_message',
                 'Page "'. $post->title.'" added!');
-     }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-     public function display($slug)
-     {
-
-         $post = Post::where('slug', $slug)->first();
-         if(!$post){ abort(404); }
-
-
-         return view('posts::display')->with( 'post', $post);
      }
 
     /**
@@ -123,7 +131,8 @@ class PostsController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-     public function destroy($id) {
+     public function destroy($id) 
+     {
          $posts = Post::findOrFail($id);
 
          $posts->delete();

@@ -10,11 +10,11 @@
     <a href="{{ route('post.create')}}" class="btn btn-success">Create New Post</a>
     <hr>
     <div class="table-responsive table-sm">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th>Title</th>
-                    <th>Slug</th>
+                    <th>Category</th>
                     <th>Author</th>
                     <th>Updated / Created</th>
                     <th>Operation</th>
@@ -26,8 +26,8 @@
                 <tr>
 
                     <td>{{ $post->title }}</td>
-                    <td>/blurb/{{ $post->slug }}</td>
-                    <td>{{ $post->author_id }}            </td>
+                    <td>{{ $post->category['name']}}</td>
+                    <td>{{ $post->author['name'] }}            </td>
                     <td style="font-size: 0.8em">{{ $post->updated_at }} <span class="text-muted">/ {{ $post->created_at }}</span></td>
                     <td>
                     <a class="btn btn-sm btn-info" href="{{ url('blurb/'. $post->slug )}}">View</a>

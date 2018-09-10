@@ -11,7 +11,7 @@
     <a href="{{ route('role.index') }}" class="btn btn-default pull-right">Roles</a></h1>
     <hr>
     <div class="table-responsive table-sm">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped table-hover">
 
             <thead class="thead-dark">
                 <tr>

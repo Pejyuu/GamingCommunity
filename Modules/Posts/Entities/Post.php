@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
   protected $fillable = [
-      'user_id', 'slug', 'title', 'content', 'filepath','tags', 'category_id',
+      'user_id', 'slug', 'title', 'lead', 'content', 'filepath','tags', 'category_id',
   ];
 
   public function category()
@@ -16,7 +16,10 @@ class Post extends Model
 
   public function author()
   {
-
     return $this->belongsTo('App\User', 'user_id');
+  }
+  public function comments()
+  {
+    return $this->hasMany('Modules\Posts\Entities\Comment');
   }
 }

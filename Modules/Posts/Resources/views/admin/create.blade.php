@@ -9,6 +9,9 @@
 <h1><i class='fa fa-key'></i> Create Post</h1>
 <hr>
 <div class="row">
+  <div class="col-9 alert alert-warning" role="alert">
+  Alle felter er foreløbig påkrevd.
+  </div>
 <div class="col-md-10 col-lg-6">
 
 
@@ -18,6 +21,10 @@
     </div>
 
 
+    <div class='form-group'>
+          <h5>{{ Form::label('lead', 'Lead ( Ingress )') }}</h5>
+            {{ Form::textarea('lead', null, ['class' => 'form-control', 'style' => 'height:75px' ]) }}
+    </div>
 
     <div class='form-group'>
           <h5>{{ Form::label('name', 'Content') }}</h5>

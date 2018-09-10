@@ -13,11 +13,11 @@
 
     <div class="form-group">
       <h5><b>  {{ Form::label('name', 'Title') }}</b></h5>
-        {{ Form::text('title') }}
+        {{ Form::text('title', null, ['class' => 'form-control' ]) }}
     </div>
     <div class="form-group">
       <h5><b>  {{ Form::label('name', 'Slug') }}</b></h5>
-        {{ Form::text('slug') }}
+        {{ Form::text('slug', null, ['class' => 'form-control' ]) }}
     </div>
 
     <div class='form-group'>

@@ -4,17 +4,29 @@
 
 @section('content')
 
-{{ Form::model($post, array('route' => array('post.update', $post->id), 'method' => 'PUT')) }}{{-- Form model binding to automatically populate our fields with permission data --}}
+
+
+
 
 <h1><i class='fa fa-key'></i> Edit Post</h1>
 <hr>
+
+{{ Form::model($post, array('route' => array('post.update', $post->id), 'method' => 'PUT')) }}{{-- Form model binding to automatically populate our fields with permission data --}}
 <div class="row">
+
+
 <div class="col-md-10 col-lg-6">
 
 
     <div class="form-group">
       <h5>{{ Form::label('name', 'Title') }}</h5>
         {{ Form::text('title', null, ['class' => 'form-control' ]) }}
+    </div>
+
+
+    <div class='form-group'>
+          <h5>{{ Form::label('lead', 'Lead ( Ingress )') }}</h5>
+            {{ Form::textarea('lead', null, ['class' => 'form-control', 'style' => 'height:75px' ]) }}
     </div>
 
 
@@ -62,8 +74,28 @@
 
     {{ Form::hidden('author', Auth::user()->id ) }}
     {{ Form::submit('Edit Post', array('class' => 'btn btn-success form-control')) }}
-  </div>
 
+    <hr>
+
+
+
+  </div>
 </div>
-  {{ Form::close() }}
+{{ Form::close() }}
+
+<div class="row">
+<div class="col-md-10 col-lg-6"></div>
+<div class="col-md-10 col-lg-4">
+  @can('post.delete')
+  {!! Form::open(['method' => 'DELETE',  'style'=> 'display: inline', 'route' => ['post.destroy', $post->id ] ]) !!}
+  {!! Form::button('Delete Post', ['class' => 'btn btn-danger form-control', 'title'=> 'Delete Post', 'type' => 'submit']) !!}
+  {!! Form::close() !!}
+
+  @endcan
+</div>
+</div>
+
+
+
+
 @stop

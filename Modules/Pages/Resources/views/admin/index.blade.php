@@ -10,7 +10,7 @@
     <a href="{{ route('page.create')}}" class="btn btn-success">Create New Page</a>
     <hr>
     <div class="table-responsive table-sm">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th>Title</th>

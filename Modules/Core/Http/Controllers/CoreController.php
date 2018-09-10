@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+use Modules\Posts\Entities\Post as Post;
+
 class CoreController extends Controller
 {
     /**
@@ -16,7 +18,9 @@ class CoreController extends Controller
 
     public function index()
     {
-        return view('core::frontend.index');
+      //$posts = Post::limit(2)->where('category_id', 1)->orderBy('created_at', 'desc')->with('author')->get();
+      $posts = Post::limit(4)->orderBy('created_at', 'desc')->with('author')->get();
+      return view('core::frontend.index')->with('posts', $posts)->with('author');
     }
 
     public function dashboard()

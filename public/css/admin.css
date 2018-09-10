@@ -151,4 +151,6 @@ body {
 }
 
 
-select.edit:first-child { background-color: blue; } 
+select.edit:first-child { background-color: blue; }
+
+.table-hover tr:hover  { background-color: rgba( 23,162, 184, 0.2)!important}

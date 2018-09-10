@@ -18,10 +18,13 @@
     <link href="{{asset('css/opl.css')}}" rel="stylesheet">
     <link href="{{asset('css/admin.css')}}" rel="stylesheet">
     <link href="{{asset('css/snippets/bootstrap-tagsinput.css')}}" rel="stylesheet">
+    @yield('css_head')
+
+    @yield('js_head')
   </head>
 
   <body>
-
+@include('cookieConsent::index')
     <div id="wrapper" class="toggled">
 
         @include('core::admin.partials.sidebar')
@@ -96,9 +99,12 @@ for (i = 0; i < dropdown.length; i++) {
 </script>
 <script>
  $('#lfm').filemanager('image');
+ $('#lfm2').filemanager('image');
+ $('#lfm3').filemanager('image');
+ $('#lfm4').filemanager('image');
 </script>
 
 <script src="{{ asset('js/snippets/bootstrap-tagsinput.js')}}"></script>
-
+@yield('js_footer')
   </body>
 </html>
