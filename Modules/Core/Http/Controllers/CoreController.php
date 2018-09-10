@@ -18,7 +18,7 @@ class CoreController extends Controller
 
     public function index()
     {
-      //$posts = Post::limit(2)->where('category_id', 1)->orderBy('created_at', 'desc')->with('author')->get();
+      //$posts = Post::limit(4)->orderBy('created_at', 'desc')->with('author')->get();
       $posts = Post::limit(4)->orderBy('created_at', 'desc')->with('author')->get();
       return view('core::frontend.index')->with('posts', $posts)->with('author');
     }
